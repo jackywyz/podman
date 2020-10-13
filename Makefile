@@ -205,7 +205,7 @@ bin/podman-remote: .gopathok $(SOURCES) go.mod go.sum $(PODMAN_VARLINK_DEPENDENC
 
 .PHONY: bin/podman-remote-static
 podman-remote-static: bin/podman-remote-static
-	CGO_ENABLED=0 $(GO) build $(BUILDFLAGS) -gcflags '$(GCFLAGS)' -asmflags '$(ASMFLAGS)' -ldflags '$(LDFLAGS_PODMAN_STATIC)' -tags "${REMOTETAGS}" -o bin/podman-remote-static ./cmd/podman
+	CGO_ENABLED=0 GOOS=linux GOARCH=386 $(GO) build $(BUILDFLAGS) -gcflags '$(GCFLAGS)' -asmflags '$(ASMFLAGS)' -ldflags '$(LDFLAGS_PODMAN_STATIC)' -tags "${REMOTETAGS}" -o bin/podman-remote-static ./cmd/podman
 
 .PHONY: podman-remote
 podman-remote: bin/podman-remote
